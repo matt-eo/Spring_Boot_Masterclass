@@ -3,6 +3,7 @@ package com.matt.springmasterclass.customer;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import javax.validation.Valid;
 import java.util.List;
 import java.util.UUID;
 
@@ -28,12 +29,12 @@ public class CustomerController {
     }
 
     @PostMapping("register")
-    public String createCustomer(@RequestBody Customer customer) {
+    public String createCustomer(@Valid @RequestBody Customer customer) {
 
     }
 
     @PutMapping("update")
-    public String updateCustomer(@RequestBody Customer customer) {
+    public String updateCustomer(@Valid @RequestBody Customer customer) {
 
     }
 

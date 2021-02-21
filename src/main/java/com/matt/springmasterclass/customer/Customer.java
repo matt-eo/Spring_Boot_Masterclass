@@ -3,24 +3,43 @@ package com.matt.springmasterclass.customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.validation.constraints.Email;
+import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.UUID;
 
 public class Customer {
 
     private UUID id;
+
+    //@NotBlank needs to be activated in the controller class
+    //where we receive the object by using the @Valid annotation
+    @NotBlank(message = "Name must not be empty")
     private String name;
+
+    @NotBlank(message = "Password must not be empty")
     @JsonProperty(access = JsonProperty.Access.WRITE_ONLY)
     private String password;
 
-    public Customer(UUID id, String name, String password) {
+    @Email(message = "Email must not be empty")
+    private String email;
+
+    public Customer(UUID id,
+                    String name,
+                    String password,
+                    String email) {
         this.id = id;
         this.name = name;
         this.password = password;
+        this.email = email;
+    }
+
+    public Customer(@NotBlank String name, @NotBlank String password, String email) {
+        this(UUID.randomUUID(), name, password, email);
     }
 
     public Customer(String name) {
-        this(UUID.randomUUID(), name, "password");
+        this(UUID.randomUUID(), name, "password", "email@gmail.com");
     }
 
     public UUID getId() {
@@ -48,6 +67,14 @@ public class Customer {
         this.password = password;
     }
 
+    public String getEmail() {
+        return email;
+    }
+
+    public void setEmail(String email) {
+        this.email = email;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) return true;
@@ -57,7 +84,8 @@ public class Customer {
 
         if (!Objects.equals(id, customer.id)) return false;
         if (!Objects.equals(name, customer.name)) return false;
-        return Objects.equals(password, customer.password);
+        if (!Objects.equals(password, customer.password)) return false;
+        return Objects.equals(email, customer.email);
     }
 
     @Override
@@ -65,6 +93,7 @@ public class Customer {
         int result = id != null ? id.hashCode() : 0;
         result = 31 * result + (name != null ? name.hashCode() : 0);
         result = 31 * result + (password != null ? password.hashCode() : 0);
+        result = 31 * result + (email != null ? email.hashCode() : 0);
         return result;
     }
 
@@ -74,6 +103,7 @@ public class Customer {
                 "id=" + id +
                 ", name='" + name + '\'' +
                 ", password='" + password + '\'' +
+                ", email='" + email + '\'' +
                 '}';
     }
 }

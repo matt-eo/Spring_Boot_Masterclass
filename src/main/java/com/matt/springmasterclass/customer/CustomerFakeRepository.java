@@ -11,8 +11,8 @@ public class CustomerFakeRepository implements CustomerRepo {
     @Override
     public List<Customer> getCustomers() {
         return List.of(
-                new Customer(UUID.randomUUID(), "Carl", "12345"),
-                new Customer(UUID.randomUUID(), "Simon", "67894")
+                new Customer(UUID.randomUUID(), "Carl", "12345", "email@gmail.com"),
+                new Customer(UUID.randomUUID(), "Simon", "67894", "email@gmail.com")
         );
     }
 }
