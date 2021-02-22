@@ -1,5 +1,6 @@
 package com.matt.springmasterclass.customer;
 
+import com.matt.springmasterclass.exception.NotFoundException;
 import org.springframework.beans.factory.annotation.Qualifier;
 import org.springframework.stereotype.Service;
 
@@ -24,7 +25,7 @@ public class CustomerService {
                 .stream()
                 .filter(c -> c.getId().equals(id))
                 .findFirst()
-                .orElseThrow(() -> new IllegalStateException("CUSTOMER NOT FOUND"));
+                .orElseThrow(() -> new NotFoundException("Customer Not Found"));
     }
 
 }
