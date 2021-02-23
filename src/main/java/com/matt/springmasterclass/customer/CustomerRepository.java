@@ -1,14 +1,14 @@
 package com.matt.springmasterclass.customer;
 
-import java.util.Collections;
-import java.util.List;
+import org.springframework.context.annotation.Primary;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
 
-public class CustomerRepository implements CustomerRepo {
+import java.util.UUID;
 
-    @Override
-    public List<Customer> getCustomers() {
-        // TODO: connect to real database
-        return Collections.emptyList();
-    }
+@Repository
+@Primary
+public interface CustomerRepository extends JpaRepository<Customer, UUID> {
+
 
 }

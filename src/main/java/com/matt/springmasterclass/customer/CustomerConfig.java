@@ -21,10 +21,10 @@ public class CustomerConfig {
     //This method allows us to switch between the two
     //repository implementations based on the value set
     //in the application.properties file
-    @Bean
+    /*@Bean
     CustomerRepo customerRepo() {
         return useFakeCustomerRepo ?
                 new CustomerFakeRepository() :
                 new CustomerRepository();
-    }
+    }*/
 }

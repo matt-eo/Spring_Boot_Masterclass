@@ -3,13 +3,19 @@ package com.matt.springmasterclass.customer;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+import javax.persistence.Entity;
+import javax.persistence.Id;
+import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
 import java.util.Objects;
 import java.util.UUID;
 
+@Entity(name = "Customer")
+@Table(name = "customer")
 public class Customer {
 
+    @Id
     private UUID id;
 
     //@NotBlank needs to be activated in the controller class
@@ -23,6 +29,9 @@ public class Customer {
 
     @Email(message = "Email must not be empty")
     private String email;
+
+    public Customer() {
+    }
 
     public Customer(UUID id,
                     String name,

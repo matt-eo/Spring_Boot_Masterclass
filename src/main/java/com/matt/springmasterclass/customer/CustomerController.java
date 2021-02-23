@@ -28,7 +28,7 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
-    @PostMapping("register")
+    /*@PostMapping("register")
     public String createCustomer(@Valid @RequestBody Customer customer) {
 
     }
@@ -41,6 +41,6 @@ public class CustomerController {
     @DeleteMapping("delete/{id}")
     public void deleteCustomer(@PathVariable("id") UUID id) {
 
-    }
+    }*/
 
 }
