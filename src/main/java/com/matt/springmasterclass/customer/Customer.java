@@ -2,17 +2,20 @@ package com.matt.springmasterclass.customer;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonProperty;
+import lombok.EqualsAndHashCode;
+import lombok.ToString;
 
 import javax.persistence.Entity;
 import javax.persistence.Id;
 import javax.persistence.Table;
 import javax.validation.constraints.Email;
 import javax.validation.constraints.NotBlank;
-import java.util.Objects;
 import java.util.UUID;
 
 @Entity(name = "Customer")
 @Table(name = "customer")
+@ToString // Lombok annotation - will generate toString for us
+@EqualsAndHashCode // Lombok will create equals and hashcode for us
 public class Customer {
 
     @Id
@@ -84,35 +87,4 @@ public class Customer {
         this.email = email;
     }
 
-    @Override
-    public boolean equals(Object o) {
-        if (this == o) return true;
-        if (o == null || getClass() != o.getClass()) return false;
-
-        Customer customer = (Customer) o;
-
-        if (!Objects.equals(id, customer.id)) return false;
-        if (!Objects.equals(name, customer.name)) return false;
-        if (!Objects.equals(password, customer.password)) return false;
-        return Objects.equals(email, customer.email);
-    }
-
-    @Override
-    public int hashCode() {
-        int result = id != null ? id.hashCode() : 0;
-        result = 31 * result + (name != null ? name.hashCode() : 0);
-        result = 31 * result + (password != null ? password.hashCode() : 0);
-        result = 31 * result + (email != null ? email.hashCode() : 0);
-        return result;
-    }
-
-    @Override
-    public String toString() {
-        return "Customer{" +
-                "id=" + id +
-                ", name='" + name + '\'' +
-                ", password='" + password + '\'' +
-                ", email='" + email + '\'' +
-                '}';
-    }
 }

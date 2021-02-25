@@ -1,22 +1,23 @@
 package com.matt.springmasterclass.customer;
 
 import com.matt.springmasterclass.exception.NotFoundException;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
 import java.util.UUID;
 
 @Service
+@Slf4j // Lombok will provide logger accessible via 'log.'
 public class CustomerService {
 
-    private final static Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
+    // Now provided by Lombok
+    // private final static Logger LOGGER = LoggerFactory.getLogger(CustomerService.class);
 
     private final CustomerRepository customerRepo;
 
     public CustomerService(CustomerRepository customerRepo) {
-        LOGGER.info("getCustomer was called");
+        log.info("getCustomer was called");
         this.customerRepo = customerRepo;
     }
 
@@ -30,7 +31,7 @@ public class CustomerService {
                     NotFoundException notFoundException = new NotFoundException(
                             "Customer NOT found"
                     );
-                    LOGGER.error("error in getting customer {}", notFoundException.toString());
+                    log.error("error in getting customer {}", notFoundException.toString());
                     return notFoundException;
                 });
     }
