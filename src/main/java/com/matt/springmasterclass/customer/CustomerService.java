@@ -5,6 +5,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 import java.util.UUID;
 
 @Service
@@ -41,12 +42,21 @@ public class CustomerService {
         customerRepo.save(customer);
     }
 
-    void updateCustomer(Customer customer) {
-        customerRepo.save(customer);
+    void updateCustomer(Customer customer, UUID id) {
+        Optional<Customer> maybeCustomer = customerRepo.findById(id);
+        if (maybeCustomer.isEmpty()) {
+            throw new IllegalStateException("The customer with id this id does not exist");
+        }
+        Customer toUpdate = new Customer(customer);
+        customerRepo.save(toUpdate);
     }
 
     void deleteCustomerById(UUID id) {
-
+        Optional<Customer> maybeCustomer = customerRepo.findById(id);
+        if (maybeCustomer.isEmpty()) {
+            throw new IllegalStateException("The customer with id this id does not exist");
+        }
+        customerRepo.deleteById(id);
     }
 
 }

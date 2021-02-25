@@ -34,9 +34,9 @@ public class CustomerController {
         return "SUCCESS!";
     }
 
-    @PutMapping("update")
-    public void updateCustomer(@Valid @RequestBody Customer customer) {
-        customerService.updateCustomer(customer);
+    @PutMapping("update/{id}")
+    public void updateCustomer(@Valid @RequestBody Customer customer, @PathVariable("id") UUID id) {
+        customerService.updateCustomer(customer, id);
     }
 
     @DeleteMapping("delete/{id}")

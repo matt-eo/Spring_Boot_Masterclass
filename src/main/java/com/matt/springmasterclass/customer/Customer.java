@@ -46,6 +46,13 @@ public class Customer {
         this.email = email;
     }
 
+    public Customer(Customer customer) {
+        this.id = customer.getId();
+        this.name = customer.getName();
+        this.password = customer.getPassword();
+        this.email = customer.getEmail();
+    }
+
     public Customer(@NotBlank String name, @NotBlank String password, String email) {
         this(UUID.randomUUID(), name, password, email);
     }
