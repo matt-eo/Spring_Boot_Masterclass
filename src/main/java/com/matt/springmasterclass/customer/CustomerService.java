@@ -36,4 +36,17 @@ public class CustomerService {
                 });
     }
 
+    void saveCustomer(Customer customer) {
+        log.info("Saving Customer...");
+        customerRepo.save(customer);
+    }
+
+    void updateCustomer(Customer customer) {
+        customerRepo.save(customer);
+    }
+
+    void deleteCustomerById(UUID id) {
+
+    }
+
 }

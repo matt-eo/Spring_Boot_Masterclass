@@ -28,19 +28,20 @@ public class CustomerController {
         return customerService.getCustomer(id);
     }
 
-    /*@PostMapping("register")
+    @PostMapping("register")
     public String createCustomer(@Valid @RequestBody Customer customer) {
-
+        customerService.saveCustomer(customer);
+        return "SUCCESS!";
     }
 
     @PutMapping("update")
-    public String updateCustomer(@Valid @RequestBody Customer customer) {
-
+    public void updateCustomer(@Valid @RequestBody Customer customer) {
+        customerService.updateCustomer(customer);
     }
 
     @DeleteMapping("delete/{id}")
-    public void deleteCustomer(@PathVariable("id") UUID id) {
-
-    }*/
+    public void deleteCustomerById(@PathVariable("id") UUID id) {
+        customerService.deleteCustomerById(id);
+    }
 
 }
